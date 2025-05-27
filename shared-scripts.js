@@ -1,0 +1,189 @@
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  const hamburger = document.querySelector(".hamburger");
+  menu.classList.toggle("active");
+  hamburger.classList.toggle("active");
+}
+
+// Tutup menu jika klik di luar
+document.addEventListener("click", function(event) {
+  const menu = document.getElementById("menu");
+  const hamburger = document.querySelector(".hamburger");
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove("active");
+    hamburger.classList.remove("active");
+  }
+});
+
+// Schedule data: array of days with date and subjects with time
+const schedule = [
+  {
+    dayLabel: "DAY 1",
+    date: "Rabu, 28 Mei 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Bahasa Indonesia", link: "bahasa-indonesia.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "PKN", link: "pkn.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 – 14.30", name: "Nahwu", link: "nahwu.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 2",
+    date: "Senin, 2 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Fisika (X, XI)/ Sosiologi XI", link: "fisika.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "Bahasa Jawa", link: "bahasa-jawa.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 – 14.30", name: "PAI", link: "pai.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 3",
+    date: "Selasa, 3 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Matematika Wajib", link: "matematika.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "Bahasa Inggris", link: "bahasa-inggris.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 – 14.30", name: "Literasi", link: "literasi.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 4",
+    date: "Rabu, 4 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Biologi (X, XI)/Geografi XI", link: "biologi.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "Seni Rupa", link: "seni-rupa.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 – 14.30", name: "Tafsir Ilmi", link: "tafsir-ilmi.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 5",
+    date: "Selasa, 10 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Bahasa Arab", link: "bahasa-arab.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "Numerasi", link: "numerasi.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 – 14.30", name: "Fikih", link: "fikih.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 6",
+    date: "Rabu, 11 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Sejarah Indonesia", link: "sejarah.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "Kimia (X, XI)/Ekonomi XI", link: "kimia.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 - 14.30", name: "Akidah", link: "akidah.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 7",
+    date: "Kamis, 12 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Informatika (X)/ Matematika lanjut (XI)/ Bahasa Inggris Lanjut (XI)", link: "informatika.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "PJOK", link: "pjok.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 - 14.30", name: "SKI(X)/Shorf(XI)", link: "ski.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 8",
+    date: "Jumat, 13 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Akhlak (X)", link: "akhlak.html" },
+      { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+      { time: "10.00 – 11.30", name: "Ekonomi (X)", link: "ekonomi.html" },
+      { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+      { time: "13.00 - 14.30", name: "Geografi (X)", link: "geografi.html" }
+    ]
+  },
+  {
+    dayLabel: "DAY 9",
+    date: "Sabtu, 14 Juni 2025",
+    subjects: [
+      { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+      { time: "07.30 – 09.00", name: "Sosiologi (X)", link: "sosiologi.html" }
+    ]
+  }
+];
+
+// Function to generate navigation grouped by day
+function generateNavigation() {
+  const container = document.getElementById("subject-links");
+  container.innerHTML = "";
+
+  schedule.forEach(day => {
+    // Create day container
+    const dayDiv = document.createElement("div");
+    dayDiv.classList.add("day-group");
+
+    // Day label
+    const dayLabel = document.createElement("h3");
+    dayLabel.classList.add("day-label");
+    dayLabel.textContent = `${day.dayLabel} - ${day.date}`;
+    dayDiv.appendChild(dayLabel);
+
+    // Subjects list
+    const ul = document.createElement("ul");
+    ul.classList.add("subject-list");
+
+    day.subjects.forEach(subject => {
+      // Skip subjects with no link (e.g., Pengkondisian siswa)
+      if (!subject.link) return;
+
+      const li = document.createElement("li");
+      li.classList.add("subject-item");
+
+      const a = document.createElement("a");
+      a.href = subject.link;
+      a.textContent = subject.name;
+      a.title = `${subject.name} (${subject.time})`;
+
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+
+    dayDiv.appendChild(ul);
+    container.appendChild(dayDiv);
+  });
+}
+
+// Search filter adapted for grouped navigation
+document.getElementById('search-subjects').addEventListener('input', function() {
+  const filter = this.value.toLowerCase();
+  const dayGroups = document.querySelectorAll('#subject-links .day-group');
+
+  dayGroups.forEach(dayGroup => {
+    let anyVisible = false;
+    const subjects = dayGroup.querySelectorAll('.subject-item a');
+
+    subjects.forEach(subject => {
+      const text = subject.textContent.toLowerCase();
+      const visible = text.includes(filter);
+      subject.parentElement.style.display = visible ? '' : 'none';
+      if (visible) anyVisible = true;
+    });
+
+    // Show or hide entire day group based on if any subject is visible
+    dayGroup.style.display = anyVisible ? '' : 'none';
+  });
+});
+
+// Generate navigation on page load
+document.addEventListener("DOMContentLoaded", generateNavigation);

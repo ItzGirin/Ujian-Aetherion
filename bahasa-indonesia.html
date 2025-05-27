@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bahasa Indonesia - Kisi-Kisi Ujian Kelas X dan XI</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/index-style.css" />
+    <link rel="stylesheet" href="/subject-style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <h1 class="judul">
+            Kisi-Kisi Ujian Kelas X dan XI <span class="subjudul">Asesmen Sumatif Akhir Tahun (ASAT)</span>
+        </h1>
+    </header>
+    <nav id="menu" class="menu">
+        <a href="index.html">Beranda</a>
+        <input type="search" id="search-subjects" placeholder="Cari mata pelajaran..." />
+        <div id="subject-links">
+            <!-- Navigation will be generated dynamically -->
+        </div>
+    </nav>
+    <main>
+        <section id="kisi-kisi">
+            <h2>Kisi-Kisi</h2>
+        </section>
+        <section id="document-viewer">
+            <h2>Dokumen Materi</h2>
+            <div id="docx-container" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto;"></div>
+            <p>Atau tidak, silakan unduh melalui tautan berikut:</p>
+            <a href="./KISI KISI BAHASA INDONESIA.docx" download>Unduh Dokumen .docx</a>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 AETHERION Semua hak dilindungi.</p>
+    </footer>
+    <script>
+    const subjectAliases = {
+        "Beranda": ["beranda", "home"],
+        "Bahasa Indonesia": ["bahasa indonesia", "bindo", "indonesia"],
+        "PKN": ["pkn", "pendidikan kewarganegaraan"],
+        "Nahwu": ["nahwu"],
+        "Fisika": ["fisika"],
+        "Bahasa Jawa": ["bahasa jawa", "jawa"],
+        "PAI": ["pai", "pendidikan agama islam"],
+        "Matematika Wajib": ["matematika wajib", "matematika", "mtk"],
+        "Bahasa Inggris": ["bahasa inggris", "english", "bing"],
+        "Literasi": ["literasi"],
+        "Biologi": ["biologi", "bio"],
+        "Seni Rupa": ["seni rupa", "seni"],
+        "Tafsir Ilmi": ["tafsir ilmi", "tafsir"],
+        "Bahasa Arab": ["bahasa arab", "arab"],
+        "Numerasi": ["numerasi"],
+        "Fikih": ["fikih"],
+        "Sejarah Indonesia": ["sejarah indonesia", "sejarah"],
+        "Kimia": ["kimia", "chemistry"],
+        "Akidah": ["akidah"],
+        "Informatika": ["informatika", "computer science", "tik"],
+        "PJOK": ["pjok", "pendidikan jasmani"],
+        "SKI": ["ski", "sejarah kebudayaan islam"],
+        "Akhlak": ["akhlak"],
+        "Ekonomi": ["ekonomi", "economics"],
+        "Geografi": ["geografi", "geography"],
+        "Sosiologi": ["sosiologi", "sociology"]
+    };
+
+    function filterSubjects() {
+        var input, filter, container, links, i, txtValue, aliasMatch;
+        input = document.getElementById('search-subjects');
+        filter = input.value.toLowerCase();
+        container = document.getElementById('subject-links');
+        links = container.getElementsByTagName('a');
+        for (i = 0; i < links.length; i++) {
+            txtValue = links[i].textContent || links[i].innerText;
+            aliasMatch = false;
+            let subjectName = txtValue.trim();
+            if (subjectName in subjectAliases) {
+                for (let alias of subjectAliases[subjectName]) {
+                    if (alias.indexOf(filter) > -1 || filter.indexOf(alias) > -1) {
+                        aliasMatch = true;
+                        break;
+                    }
+                }
+            }
+            if (txtValue.toLowerCase().indexOf(filter) > -1 || aliasMatch) {
+                links[i].style.display = "";
+            } else {
+                links[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+    <script>
+        fetch('./KISI KISI BAHASA INDONESIA.docx')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => mammoth.convertToHtml({arrayBuffer: arrayBuffer}))
+            .then(result => {
+                document.getElementById('docx-container').innerHTML = result.value;
+            })
+            .catch(err => {
+                document.getElementById('docx-container').innerHTML = "<p>Gagal memuat dokumen .docx.</p>";
+            });
+    </script>
+    <script src="shared-scripts.js"></script>
+</body>
+</html>

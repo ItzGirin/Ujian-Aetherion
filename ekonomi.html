@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ekonomi - Kisi-Kisi Ujian Kelas X dan XI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Ekonomi</h1>
+        <p>Kisi-Kisi Ujian Kelas X dan XI</p>
+    </header>
+    <nav class="course-nav">
+        <div class="fixed-nav">
+            <a href="index.html">Beranda</a>
+            <input type="search" id="search-subject" placeholder="Search Mata Pelajaran" aria-label="Search Mata Pelajaran" onkeyup="filterSubjects()" />
+        </div>
+        <div class="scrollable-nav" id="subject-list">
+            <a href="bahasa-indonesia.html">Bahasa Indonesia</a>
+            <a href="pkn.html">PKN</a>
+            <a href="nahwu.html">Nahwu</a>
+            <a href="fisika.html">Fisika</a>
+            <a href="bahasa-jawa.html">Bahasa Jawa</a>
+            <a href="pai.html">PAI</a>
+            <a href="matematika.html">Matematika Wajib</a>
+            <a href="bahasa-inggris.html">Bahasa Inggris</a>
+            <a href="literasi.html">Literasi</a>
+            <a href="biologi.html">Biologi</a>
+            <a href="seni-rupa.html">Seni Rupa</a>
+            <a href="tafsir-ilmi.html">Tafsir Ilmi</a>
+            <a href="bahasa-arab.html">Bahasa Arab</a>
+            <a href="numerasi.html">Numerasi</a>
+            <a href="fikih.html">Fikih</a>
+            <a href="sejarah.html">Sejarah Indonesia</a>
+            <a href="kimia.html">Kimia</a>
+            <a href="akidah.html">Akidah</a>
+            <a href="informatika.html">Informatika</a>
+            <a href="pjok.html">PJOK</a>
+            <a href="ski.html">SKI</a>
+            <a href="akhlak.html">Akhlak</a>
+            <a href="ekonomi.html" class="active">Ekonomi</a>
+            <a href="geografi.html">Geografi</a>
+            <a href="sosiologi.html">Sosiologi</a>
+        </div>
+    </nav>
+    <main>
+        <section id="kisi-kisi">
+            <h2>Kisi-Kisi</h2>
+            <p>Materi kisi-kisi untuk ujian Ekonomi...</p>
+        </section>
+        <section id="latihan-soal">
+            <h2>Latihan Soal</h2>
+            <p>Latihan soal Ekonomi...</p>
+        </section>
+        <section id="ringkasan">
+            <h2>Ringkasan</h2>
+            <p>Ringkasan materi Ekonomi...</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 AETHERION Semua hak dilindungi.</p>
+    </footer>
+    <script>
+    const subjectAliases = {
+        "Beranda": ["beranda", "home"],
+        "Bahasa Indonesia": ["bahasa indonesia", "bindo", "indonesia"],
+        "PKN": ["pkn", "pendidikan kewarganegaraan"],
+        "Nahwu": ["nahwu"],
+        "Fisika": ["fisika"],
+        "Bahasa Jawa": ["bahasa jawa", "jawa"],
+        "PAI": ["pai", "pendidikan agama islam"],
+        "Matematika Wajib": ["matematika wajib", "matematika", "mtk"],
+        "Bahasa Inggris": ["bahasa inggris", "english", "bing"],
+        "Literasi": ["literasi"],
+        "Biologi": ["biologi", "bio"],
+        "Seni Rupa": ["seni rupa", "seni"],
+        "Tafsir Ilmi": ["tafsir ilmi", "tafsir"],
+        "Bahasa Arab": ["bahasa arab", "arab"],
+        "Numerasi": ["numerasi"],
+        "Fikih": ["fikih"],
+        "Sejarah Indonesia": ["sejarah indonesia", "sejarah"],
+        "Kimia": ["kimia", "chemistry"],
+        "Akidah": ["akidah"],
+        "Informatika": ["informatika", "computer science", "tik"],
+        "PJOK": ["pjok", "pendidikan jasmani"],
+        "SKI": ["ski", "sejarah kebudayaan islam"],
+        "Akhlak": ["akhlak"],
+        "Ekonomi": ["ekonomi", "economics"],
+        "Geografi": ["geografi", "geography"],
+        "Sosiologi": ["sosiologi", "sociology"]
+    };
+
+    function filterSubjects() {
+        var input, filter, container, links, i, txtValue, aliasMatch;
+        input = document.getElementById('search-subject');
+        filter = input.value.toLowerCase();
+        container = document.getElementById('subject-list');
+        links = container.getElementsByTagName('a');
+        for (i = 0; i < links.length; i++) {
+            txtValue = links[i].textContent || links[i].innerText;
+            aliasMatch = false;
+            let subjectName = txtValue.trim();
+            if (subjectName in subjectAliases) {
+                for (let alias of subjectAliases[subjectName]) {
+                    if (alias.indexOf(filter) > -1 || filter.indexOf(alias) > -1) {
+                        aliasMatch = true;
+                        break;
+                    }
+                }
+            }
+            if (txtValue.toLowerCase().indexOf(filter) > -1 || aliasMatch) {
+                links[i].style.display = "";
+            } else {
+                links[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+</body>
+</html>

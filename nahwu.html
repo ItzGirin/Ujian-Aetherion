@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nahwu - Kisi-Kisi Ujian Kelas X dan XI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <h1 class="judul">
+            Kisi-Kisi Ujian Kelas X dan XI <span class="subjudul">Asesmen Sumatif Akhir Tahun (ASAT)</span>
+        </h1>
+    </header>
+
+    <nav class="course-nav">
+        <div class="fixed-nav">
+            <a href="index.html">Beranda</a>
+            <input type="search" id="search-subject" placeholder="Search Mata Pelajaran" aria-label="Search Mata Pelajaran" onkeyup="filterSubjects()" />
+        </div>
+        <div class="scrollable-nav" id="subject-list">
+            <!-- Daftar mata pelajaran (tetap) -->
+            <a href="bahasa-indonesia.html">Bahasa Indonesia</a>
+            <a href="pkn.html">PKN</a>
+            <a href="nahwu.html" class="active">Nahwu</a>
+            <!-- dan seterusnya... -->
+        </div>
+    </nav>
+
+    <main>
+        <section id="kisi-kisi">
+            <h2>Kisi-Kisi</h2>
+            <p>Materi kisi-kisi untuk ujian Nahwu...</p>
+        </section>
+
+        <section id="document-viewer">
+            <h2>Dokumen Materi</h2>
+            <div id="docx-container" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto;"></div>
+            <div id="txt-container" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto; margin-top:20px;"></div>
+            <p>Atau silakan unduh dokumen melalui tautan berikut:</p>
+            <a href="/kisi kisi nahwu.txt" download>Unduh Dokumen .txt</a>
+
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 AETHERION Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        const subjectAliases = {
+            "Beranda": ["beranda", "home"],
+            "Bahasa Indonesia": ["bahasa indonesia", "bindo", "indonesia"],
+            "PKN": ["pkn", "pendidikan kewarganegaraan"],
+            "Nahwu": ["nahwu"],
+            "Fisika": ["fisika"],
+            "Bahasa Jawa": ["bahasa jawa", "jawa"],
+            "PAI": ["pai", "pendidikan agama islam"],
+            "Matematika Wajib": ["matematika wajib", "matematika", "mtk"],
+            "Bahasa Inggris": ["bahasa inggris", "english", "bing"],
+            "Literasi": ["literasi"],
+            "Biologi": ["biologi", "bio"],
+            "Seni Rupa": ["seni rupa", "seni"],
+            "Tafsir Ilmi": ["tafsir ilmi", "tafsir"],
+            "Bahasa Arab": ["bahasa arab", "arab"],
+            "Numerasi": ["numerasi"],
+            "Fikih": ["fikih"],
+            "Sejarah Indonesia": ["sejarah indonesia", "sejarah"],
+            "Kimia": ["kimia", "chemistry"],
+            "Akidah": ["akidah"],
+            "Informatika": ["informatika", "computer science", "tik"],
+            "PJOK": ["pjok", "pendidikan jasmani"],
+            "SKI": ["ski", "sejarah kebudayaan islam"],
+            "Akhlak": ["akhlak"],
+            "Ekonomi": ["ekonomi", "economics"],
+            "Geografi": ["geografi", "geography"],
+            "Sosiologi": ["sosiologi", "sociology"]
+        };
+
+        function filterSubjects() {
+            var input = document.getElementById('search-subject');
+            var filter = input.value.toLowerCase();
+            var container = document.getElementById('subject-list');
+            var links = container.getElementsByTagName('a');
+
+            for (var i = 0; i < links.length; i++) {
+                var txtValue = links[i].textContent || links[i].innerText;
+                var aliasMatch = false;
+                let subjectName = txtValue.trim();
+
+                if (subjectName in subjectAliases) {
+                    for (let alias of subjectAliases[subjectName]) {
+                        if (alias.indexOf(filter) > -1 || filter.indexOf(alias) > -1) {
+                            aliasMatch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (txtValue.toLowerCase().indexOf(filter) > -1 || aliasMatch) {
+                    links[i].style.display = "";
+                } else {
+                    links[i].style.display = "none";
+                }
+            }
+        }
+
+        // Ambil dan tampilkan file .docx (ubah path sesuai file Nahwu kamu)
+        fetch('./kisi kisi nahwu.docx')
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => mammoth.convertToHtml({ arrayBuffer: arrayBuffer }))
+            .then(result => {
+                document.getElementById('docx-container').innerHTML = result.value;
+            })
+            .catch(err => {
+                document.getElementById('docx-container').innerHTML = "<p>Gagal memuat dokumen .docx.</p>";
+            });
+
+        // Ambil dan tampilkan file .txt
+        fetch('./kisi kisi nahwu.txt')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('txt-container').textContent = text;
+            })
+            .catch(err => {
+                document.getElementById('txt-container').innerHTML = "<p>Gagal memuat dokumen .txt.</p>";
+            });
+    </script>
+
+    <script src="shared-scripts.js"></script>
+</body>
+</html>
