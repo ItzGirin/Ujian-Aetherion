@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Nahwu - Kisi-Kisi Ujian Kelas X dan XI</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Nahwu - Kisi-Kisi Ujian Kelas X dan XI</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="/subject-style.css" />
+        <link rel="stylesheet" href="/index-style.css" />
+        <!-- Add mammoth.js CDN for .docx to HTML conversion -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    </head>
 <body>
-    <header class="navbar">
-        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+  <header class="navbar">
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    <h1 class="judul">
+        Kisi-Kisi Ujian Kelas X dan XI <span class="subjudul">Asesmen Sumatif Akhir Tahun (ASAT)</span>
+    </h1>
+</header>
+    <nav id="menu" class="menu">
+        <a href="index.html">Beranda</a>
+        <input type="search" id="search-subjects" placeholder="Cari mata pelajaran..." />
+        <div id="subject-links">
+            <!-- Navigation will be generated dynamically -->
         </div>
-        <h1 class="judul">
-            Kisi-Kisi Ujian Kelas X dan XI <span class="subjudul">Asesmen Sumatif Akhir Tahun (ASAT)</span>
-        </h1>
-    </header>
+    </nav>
+    <main>
 
     <nav class="course-nav">
         <div class="fixed-nav">
@@ -39,11 +51,20 @@
         </section>
 
         <section id="document-viewer">
-            <h2>Dokumen Materi</h2>
-            <div id="docx-container" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto;"></div>
-            <div id="txt-container" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto; margin-top:20px;"></div>
+            <h2>Materi</h2>
+            <div id="docx-container-1" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto;">
+                <p>Loading document preview 1...</p>
+            </div>
+            <div id="docx-container-2" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto; margin-top:20px;">
+                <p>Loading document preview 2...</p>
+            </div>
+            <div id="docx-container-3" style="border:1px solid #ccc; padding:10px; max-height:600px; overflow:auto; margin-top:20px;">
+                <p>Loading document preview 3...</p>
+            </div>
             <p>Atau silakan unduh dokumen melalui tautan berikut:</p>
-            <a href="/kisi kisi nahwu.txt" download>Unduh Dokumen .txt</a>
+            <a href="/QUIZ  NAHWU1.docx" download>Unduh Dokumen .txt</a>
+            <a href="/Nahwu 2.docx" download>Unduh Dokumen .txt</a>
+            <a href="/Nahwu 3.docx" download>Unduh Dokumen .txt</a>
 
             
         </section>
@@ -54,85 +75,210 @@
     </footer>
 
     <script>
-        const subjectAliases = {
-            "Beranda": ["beranda", "home"],
-            "Bahasa Indonesia": ["bahasa indonesia", "bindo", "indonesia"],
-            "PKN": ["pkn", "pendidikan kewarganegaraan"],
-            "Nahwu": ["nahwu"],
-            "Fisika": ["fisika"],
-            "Bahasa Jawa": ["bahasa jawa", "jawa"],
-            "PAI": ["pai", "pendidikan agama islam"],
-            "Matematika Wajib": ["matematika wajib", "matematika", "mtk"],
-            "Bahasa Inggris": ["bahasa inggris", "english", "bing"],
-            "Literasi": ["literasi"],
-            "Biologi": ["biologi", "bio"],
-            "Seni Rupa": ["seni rupa", "seni"],
-            "Tafsir Ilmi": ["tafsir ilmi", "tafsir"],
-            "Bahasa Arab": ["bahasa arab", "arab"],
-            "Numerasi": ["numerasi"],
-            "Fikih": ["fikih"],
-            "Sejarah Indonesia": ["sejarah indonesia", "sejarah"],
-            "Kimia": ["kimia", "chemistry"],
-            "Akidah": ["akidah"],
-            "Informatika": ["informatika", "computer science", "tik"],
-            "PJOK": ["pjok", "pendidikan jasmani"],
-            "SKI": ["ski", "sejarah kebudayaan islam"],
-            "Akhlak": ["akhlak"],
-            "Ekonomi": ["ekonomi", "economics"],
-            "Geografi": ["geografi", "geography"],
-            "Sosiologi": ["sosiologi", "sociology"]
-        };
+        const schedule = [
+      {
+        dayLabel: "DAY 1",
+        date: "Rabu, 28 Mei 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Bahasa Indonesia", link: "bahasa-indonesia.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "PKN", link: "pkn.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 – 14.30", name: "Nahwu", link: "nahwu.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 2",
+        date: "Senin, 2 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Fisika (X, XI)/ Sosiologi XI", link: "fisika.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "Bahasa Jawa", link: "bahasa-jawa.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 – 14.30", name: "PAI", link: "pai.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 3",
+        date: "Selasa, 3 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Matematika Wajib", link: "matematika.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "Bahasa Inggris", link: "bahasa-inggris.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 – 14.30", name: "Literasi", link: "literasi.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 4",
+        date: "Rabu, 4 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Biologi (X, XI)/Geografi XI", link: "biologi.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "Seni Rupa", link: "seni-rupa.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 – 14.30", name: "Tafsir Ilmi", link: "tafsir-ilmi.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 5",
+        date: "Selasa, 10 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Bahasa Arab", link: "bahasa-arab.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "Numerasi", link: "numerasi.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 – 14.30", name: "Fikih", link: "fikih.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 6",
+        date: "Rabu, 11 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Sejarah Indonesia", link: "sejarah.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "Kimia (X, XI)/Ekonomi XI", link: "kimia.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 - 14.30", name: "Akidah", link: "akidah.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 7",
+        date: "Kamis, 12 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Informatika (X)/ Matematika lanjut (XI)/ Bahasa Inggris Lanjut (XI)", link: "informatika.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "PJOK", link: "pjok.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 - 14.30", name: "SKI(X)/Shorf(XI)", link: "ski.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 8",
+        date: "Jumat, 13 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Akhlak (X)", link: "akhlak.html" },
+          { time: "09.55 – 10.00", name: "Pengkondisian siswa", link: null },
+          { time: "10.00 – 11.30", name: "Ekonomi (X)", link: "ekonomi.html" },
+          { time: "12.55 – 13.00", name: "Pengkondisian siswa", link: null },
+          { time: "13.00 - 14.30", name: "Geografi (X)", link: "geografi.html" }
+        ]
+      },
+      {
+        dayLabel: "DAY 9",
+        date: "Sabtu, 14 Juni 2025",
+        subjects: [
+          { time: "07.25 – 07.30", name: "Pengkondisian siswa", link: null },
+          { time: "07.30 – 09.00", name: "Sosiologi (X)", link: "sosiologi.html" }
+        ]
+      }
+    ];
+    
+    // Function to generate navigation grouped by day
+    function generateNavigation() {
+      const container = document.getElementById("subject-links");
+      container.innerHTML = "";
+    
+      schedule.forEach(day => {
+        // Create day container
+        const dayDiv = document.createElement("div");
+        dayDiv.classList.add("day-group");
+    
+        // Day label
+        const dayLabel = document.createElement("h3");
+        dayLabel.classList.add("day-label");
+        dayLabel.textContent = `${day.dayLabel} - ${day.date}`;
+        dayDiv.appendChild(dayLabel);
+    
+        // Subjects list
+        const ul = document.createElement("ul");
+        ul.classList.add("subject-list");
+    
+        day.subjects.forEach(subject => {
+          // Skip subjects with no link (e.g., Pengkondisian siswa)
+          if (!subject.link) return;
+    
+          const li = document.createElement("li");
+          li.classList.add("subject-item");
+    
+          const a = document.createElement("a");
+          a.href = subject.link;
+          a.textContent = subject.name;
+          a.title = `${subject.name} (${subject.time})`;
+    
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+    
+        dayDiv.appendChild(ul);
+        container.appendChild(dayDiv);
+      });
+    }
+    
+    // Search filter adapted for grouped navigation
+    document.getElementById('search-subjects').addEventListener('input', function() {
+      const filter = this.value.toLowerCase();
+      const dayGroups = document.querySelectorAll('#subject-links .day-group');
+    
+      dayGroups.forEach(dayGroup => {
+        let anyVisible = false;
+        const subjects = dayGroup.querySelectorAll('.subject-item a');
+    
+        subjects.forEach(subject => {
+          const text = subject.textContent.toLowerCase();
+          const visible = text.includes(filter);
+          subject.parentElement.style.display = visible ? '' : 'none';
+          if (visible) anyVisible = true;
+        });
+    
+        // Show or hide entire day group based on if any subject is visible
+        dayGroup.style.display = anyVisible ? '' : 'none';
+      });
+    });
+    
+    // Generate navigation on page load
+    document.addEventListener("DOMContentLoaded", generateNavigation);
+</script>
+    <script>
+        // Function to fetch and render local .docx files using mammoth.js
+        function renderDocx() {
+            const files = [
+                { url: "/QUIZ%20%20NAHWU1.docx", containerId: "docx-container-1" },
+                { url: "/Nahwu 2.docx", containerId: "docx-container-2" },
+                { url: "/Nahwu 3.docx", containerId: "docx-container-3" }
+            ];
 
-        function filterSubjects() {
-            var input = document.getElementById('search-subject');
-            var filter = input.value.toLowerCase();
-            var container = document.getElementById('subject-list');
-            var links = container.getElementsByTagName('a');
-
-            for (var i = 0; i < links.length; i++) {
-                var txtValue = links[i].textContent || links[i].innerText;
-                var aliasMatch = false;
-                let subjectName = txtValue.trim();
-
-                if (subjectName in subjectAliases) {
-                    for (let alias of subjectAliases[subjectName]) {
-                        if (alias.indexOf(filter) > -1 || filter.indexOf(alias) > -1) {
-                            aliasMatch = true;
-                            break;
+            files.forEach(file => {
+                fetch(file.url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
                         }
-                    }
-                }
-
-                if (txtValue.toLowerCase().indexOf(filter) > -1 || aliasMatch) {
-                    links[i].style.display = "";
-                } else {
-                    links[i].style.display = "none";
-                }
-            }
+                        return response.arrayBuffer();
+                    })
+                    .then(arrayBuffer => mammoth.convertToHtml({ arrayBuffer: arrayBuffer }))
+                    .then(result => {
+                        document.getElementById(file.containerId).innerHTML = result.value;
+                    })
+                    .catch(err => {
+                        document.getElementById(file.containerId).innerHTML = "<p>Gagal memuat dokumen. Silakan unduh dokumen menggunakan tautan di bawah.</p>";
+                        console.error("Error loading .docx file:", err);
+                    });
+            });
         }
 
-        // Ambil dan tampilkan file .docx (ubah path sesuai file Nahwu kamu)
-        fetch('./kisi kisi nahwu.docx')
-            .then(response => response.arrayBuffer())
-            .then(arrayBuffer => mammoth.convertToHtml({ arrayBuffer: arrayBuffer }))
-            .then(result => {
-                document.getElementById('docx-container').innerHTML = result.value;
-            })
-            .catch(err => {
-                document.getElementById('docx-container').innerHTML = "<p>Gagal memuat dokumen .docx.</p>";
-            });
-
-        // Ambil dan tampilkan file .txt
-        fetch('./kisi kisi nahwu.txt')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('txt-container').textContent = text;
-            })
-            .catch(err => {
-                document.getElementById('txt-container').innerHTML = "<p>Gagal memuat dokumen .txt.</p>";
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            renderDocx();
+        });
     </script>
-
-    <script src="shared-scripts.js"></script>
+<script src="shared-scripts.js"></script>
 </body>
 </html>
